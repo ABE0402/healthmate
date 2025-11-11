@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
+
+        <include
+            android:id="@+id/cardAiExercise"
+            layout="@layout/component_ai_card" />
+
+        <include
+            android:id="@+id/cardAiRecipe"
+            layout="@layout/component_ai_recipe" />
+        <include
+            android:id="@+id/cardFridgeRecipe"
+            layout="@layout/component_fridge_recipe" />
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleDateRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="16dp">
+            <Button android:id="@+id/btn7days" style="?attr/materialButtonOutlinedStyle" android:text="최근 7일" />
+            <Button android:id="@+id/btn30days" style="?attr/materialButtonOutlinedStyle" android:text="최근 30일" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chartCalorieTrend"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="16dp" />
+
+        <include
+            android:id="@+id/cardAiInsight"
+            layout="@layout/component_ai_card" />
+
+    </LinearLayout>
+</ScrollView>

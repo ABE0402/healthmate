@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="2dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+            <ImageView
+                android:id="@+id/ivChallengeIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_target"
+                android:padding="8dp"
+                android:background="@drawable/bg_light_blue_rounded" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="12dp">
+                <TextView
+                    android:id="@+id/tvChallengeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="단백질 섭취 챌린지"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary_light" />
+                <TextView
+                    android:id="@+id/tvChallengeDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="최근 3일간 단백질 목표 달성 (1/3일)"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_sub_light" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvChallengeStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="진행중"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/bg_status_inprogress" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressChallenge"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:progress="33"
+            android:progressDrawable="@drawable/progress_bar_custom" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

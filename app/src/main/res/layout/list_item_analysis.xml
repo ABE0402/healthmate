@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <EditText
+            android:id="@+id/etFoodItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/btnRemoveItem"
+            android:text="음식 이름"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:id="@+id/btnRemoveItem"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_trash"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@id/etFoodItem" />
+
+        <EditText
+            android:id="@+id/etServingSize"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:inputType="number"
+            android:textSize="14sp"
+            android:background="@android:color/transparent"
+            android:layout_below="@id/etFoodItem"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="g"
+            android:layout_alignBaseline="@id/etServingSize"
+            android:layout_toEndOf="@id/etServingSize" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kcal"
+            android:textSize="14sp"
+            android:textColor="@color/primary_blue"
+            android:layout_alignBaseline="@id/etServingSize"
+            android:layout_alignParentEnd="true" />
+        <EditText
+            android:id="@+id/etKcal"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="350"
+            android:inputType="number"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:gravity="end"
+            android:textColor="@color/primary_blue"
+            android:background="@android:color/transparent"
+            android:layout_alignBaseline="@id/etServingSize"
+            android:layout_toStartOf="@id/kcalUnit"
+            android:layout_marginEnd="4dp" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

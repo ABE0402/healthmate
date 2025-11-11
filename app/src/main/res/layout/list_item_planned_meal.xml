@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_light_gray_rounded"> <ImageView
+    android:id="@+id/ivMealIcon"
+    android:layout_width="24dp"
+    android:layout_height="24dp"
+    android:src="@drawable/ic_sun"
+    android:tint="@color/primary_blue"
+    android:layout_marginEnd="12dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvMealTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아침 - 450 kcal"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary_light" />
+
+        <TextView
+            android:id="@+id/tvMealName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오트밀과 과일"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary_light" />
+
+        <TextView
+            android:id="@+id/tvMealDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="귀리, 블루베리, 아몬드 슬라이스"
+            android:textSize="12sp"
+            android:textColor="@color/text_sub_light" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnLogMeal"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기록"
+        android:textColor="@color/primary_blue"
+        android:drawableLeft="@drawable/ic_plus_circle"
+        android:drawableTint="@color/primary_blue"
+        android:minHeight="0dp"
+        android:paddingVertical="4dp" />
+</LinearLayout>

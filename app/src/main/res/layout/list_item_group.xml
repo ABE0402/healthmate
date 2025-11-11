@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentStart="true">
+                <TextView
+                    android:id="@+id/tvGroupName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여름 준비 다이어트방"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android.textColor="@color/text_primary_light" />
+                <TextView
+                    android:id="@+id/tvMemberCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5명 참여중"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_sub_light"
+                    android:drawableLeft="@drawable/ic_groups"
+                    android:drawablePadding="4dp" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnGroupMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvChallengeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="그룹 칼로리 50,000kcal 소모"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary_light" />
+
+        <ProgressBar
+            android:id="@+id/progressChallenge"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="8dp"
+            android:progress="78"
+            android:progressDrawable="@drawable/progress_bar_custom" />
+        <TextView
+            android:id="@+id/tvChallengeProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="78% 달성"
+            android:textSize="12sp"
+            android:textColor="@color/text_sub_light"
+            android:layout_gravity="end" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

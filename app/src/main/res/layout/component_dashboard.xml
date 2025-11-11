@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    android:layout_margin="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"> <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오늘 총 섭취 칼로리"
+        android:textSize="16sp"
+        android:textColor="@color/text_sub_light" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/tvTotalKcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1,800"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary_light"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/tvGoalKcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/ 2,000 kcal"
+                android:textSize="14sp"
+                android:textColor="@color/text_sub_light"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/tvTotalKcal" />
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBarKcal"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="16dp"
+            android:progress="90"
+            android:progressDrawable="@drawable/progress_bar_custom" />
+<!--        아래꺼 공유 깃허브에 많이 있는 그래프 주소 검색 ㄱ-->
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartMacros"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

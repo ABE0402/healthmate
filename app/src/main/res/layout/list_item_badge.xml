@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="12dp"
+    android:background="@drawable/bg_light_gray_rounded">
+
+    <ImageView
+        android:id="@+id/ivBadgeIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_star"
+        android:padding="16dp"
+        android:background="@drawable/bg_badge_icon" /> <TextView
+    android:id="@+id/tvBadgeName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="배지 이름"
+    android:textSize="14sp"
+    android:textStyle="bold"
+    android:textColor="@color/text_primary_light"
+    android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/tvBadgeDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="배지 설명입니다."
+        android:textSize="12sp"
+        android:textColor="@color/text_sub_light"
+        android:gravity="center" />
+</LinearLayout>

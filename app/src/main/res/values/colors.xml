@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_blue">#0A84FF</color>
+
+    <color name="card_bg_light">#FFFFFF</color>
+
+    <color name="card_bg_dark">#1e293b</color>
+
+    <color name="text_primary_light">#334155</color>
+
+    <color name="text_primary_dark">#e2e8f0</color>
+
+    <color name="text_sub_light">#64748b</color>
+
+    <color name="text_sub_dark">#94a3b8</color>
+
+    <color name="chart_carbs">#0A84FF</color>
+    <color name="chart_protein">#34C759</color>
+    <color name="chart_fat">#FF9500</color>
+</resources>
