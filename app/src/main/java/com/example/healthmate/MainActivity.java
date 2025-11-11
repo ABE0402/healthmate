@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.healthmate.view.ChatFragment;
+import com.example.healthmate.view.GroupsFragment;
+import com.example.healthmate.view.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.healthmate.view.AnalysisFragment;
 import com.example.healthmate.view.HomeFragment;
@@ -32,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_analysis) {
                 selectedFragment = new AnalysisFragment(); // 10.3에서 만든 임시 분석
             } else if (itemId == R.id.nav_chat) {
-                // selectedFragment = new ChatFragment(); // 임시
+                 selectedFragment = new ChatFragment();
             } else if (itemId == R.id.nav_groups) {
-                // selectedFragment = new GroupsFragment(); // 임시
+                 selectedFragment = new GroupsFragment();
             } else if (itemId == R.id.nav_profile) {
-                // selectedFragment = new ProfileFragment(); // 임시
+                 selectedFragment = new ProfileFragment();
             }
 
             if (selectedFragment != null) {

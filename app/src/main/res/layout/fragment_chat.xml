@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="AI 영양사에게 메시지 보내기..."
-            android:inputType="textShortMessage"
+            android:inputType="text"
             android:background="@drawable/bg_light_gray_rounded"
             android:padding="12dp" />
 

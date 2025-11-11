@@ -309,21 +309,23 @@ public class GeminiService {
             @Override
             public void onSuccess(GenerateContentResponse result) {
                 try {
-                    String text = result.getText();
-                    if (text == null) {
-                        throw new Exception("Received empty or invalid response from Gemini.");
+                    String text = extractTextFromResponse(result); // ✅ 안전하게 추출
+                    if (text == null || text.trim().isEmpty()) {
+                        throw new Exception("Gemini 응답에서 텍스트를 찾을 수 없습니다.");
                     }
                     callback.onSuccess(text);
                 } catch (Exception e) {
                     callback.onError(e);
                 }
             }
+
             @Override
             public void onFailure(Throwable t) {
                 callback.onError((Exception) t);
             }
         }, executor);
     }
+
 
     private <T> void addJsonCallback(ListenableFuture<GenerateContentResponse> future, java.lang.reflect.Type type, Consumer<T> onSuccess, Consumer<Exception> onError) {
         Futures.addCallback(future, new FutureCallback<GenerateContentResponse>() {
