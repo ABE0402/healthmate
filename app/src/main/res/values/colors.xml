@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 기본 테마 색상 -->
     <color name="primary_blue">#0A84FF</color>
+    <color name="primary_green">#34C759</color>
+    <color name="primary_orange">#FF9500</color>
 
+    <!-- 카드 배경 색상 -->
     <color name="card_bg_light">#FFFFFF</color>
-
     <color name="card_bg_dark">#1e293b</color>
 
+    <!-- 텍스트 색상 -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
     <color name="text_primary_light">#334155</color>
-
     <color name="text_primary_dark">#e2e8f0</color>
-
     <color name="text_sub_light">#64748b</color>
-
     <color name="text_sub_dark">#94a3b8</color>
 
+    <!-- 차트 색상 -->
     <color name="chart_carbs">#0A84FF</color>
     <color name="chart_protein">#34C759</color>
     <color name="chart_fat">#FF9500</color>

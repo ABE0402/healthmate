@@ -1,10 +1,22 @@
+
 plugins {
     alias(libs.plugins.android.application)
+}
+
+// Read properties from local.properties
+def properties = new Properties()
+if (rootProject.file('local.properties').exists()) {
+    properties.load(rootProject.file('local.properties').newDataInputStream())
 }
 
 android {
     namespace 'com.example.healthmate'
     compileSdk 36
+
+    // Enable BuildConfig generation
+    buildFeatures {
+        buildConfig true
+    }
 
     defaultConfig {
         applicationId "com.example.healthmate"
@@ -20,11 +32,18 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Add API Key to release build
+            buildConfigField "String", "GEMINI_API_KEY", properties.getProperty('GEMINI_API_KEY', '""')
+        }
+        // Add a debug build type to get the key during development
+        debug {
+            buildConfigField "String", "GEMINI_API_KEY", properties.getProperty('GEMINI_API_KEY', '""')
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 }
 
@@ -39,7 +58,14 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 
-    implementation "com.google.ai.client.generativeai:generativeai:0.8.0"
+    // CORRECTED: Replaced server SDK with the proper Android SDK for Gemini
+    implementation 'com.google.ai.client.generativeai:generativeai:0.9.0'
 
+    implementation "com.google.guava:guava:33.0.0-android"
     implementation "com.google.code.gson:gson:2.10.1"
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 }

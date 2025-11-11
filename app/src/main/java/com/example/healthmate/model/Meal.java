@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Meal {
 
-    // MealTime 'enum'으로 MealTime 타입 구현
+    // MealTime 'enum'은 유용하므로 그대로 둡니다.
     public enum MealTime {
         BREAKFAST("아침"),
         LUNCH("점심"),
@@ -18,27 +18,44 @@ public class Meal {
             this.displayName = displayName;
         }
 
+        @Override
+        public String toString() {
+            return displayName;
+        }
+
         public String getDisplayName() {
             return displayName;
         }
     }
 
-    private long id;
-    private String foodItem;
-    private int servingSize;
-    private int kcal;
-    private Nutrients macro;
-    private MealTime time;
+    private int id;
+    private String foodName;
+    private String mealType; // Enum 대신 String 타입으로 변경
+    private int calories;    // kcal -> calories로 변경
     private Date date;
-    private String imageBase64; // 웹의 'image' 필드는 Base64 문자열로 처리
+    private int protein;
+    private int fat;
+    private int carbohydrates;
 
-    // 생성자, Getter, Setter ...
+    // HomeViewModel에서 사용하는 생성자
+    public Meal(int id, String foodName, String mealType, int calories, Date date, int protein, int fat, int carbohydrates) {
+        this.id = id;
+        this.foodName = foodName;
+        this.mealType = mealType;
+        this.calories = calories;
+        this.date = date;
+        this.protein = protein;
+        this.fat = fat;
+        this.carbohydrates = carbohydrates;
+    }
 
-    // Getter 예시
-    public long getId() { return id; }
-    public String getFoodItem() { return foodItem; }
-    public int getKcal() { return kcal; }
-    public Nutrients getMacro() { return macro; }
-    public MealTime getTime() { return time; }
+    // Getters
+    public int getId() { return id; }
+    public String getFoodName() { return foodName; }
+    public String getMealType() { return mealType; }
+    public int getCalories() { return calories; } // getKcal -> getCalories
     public Date getDate() { return date; }
+    public int getProtein() { return protein; }
+    public int getFat() { return fat; }
+    public int getCarbohydrates() { return carbohydrates; }
 }

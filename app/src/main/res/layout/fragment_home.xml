@@ -20,6 +20,24 @@
             android:paddingHorizontal="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘의 식단"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/black"/>
+
+            <Button
+                android:id="@+id/btnManualAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수동 추가"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -32,6 +50,9 @@
             android:id="@+id/tvEmptyMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="아직 추가된 식단이 없습니다."
+            android:gravity="center"
+            android:padding="16dp"
             android:visibility="gone" />
 
     </LinearLayout>

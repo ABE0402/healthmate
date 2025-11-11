@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,6 +27,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_person"
                     android:text="기본 정보"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -34,23 +35,30 @@
                     android:layout_marginBottom="12dp" />
 
                 <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="8dp">
-                    <TextView android:text="성별" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" />
-                    <TextView android:id="@+id/tvGender" android:text="-" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
+                    <TextView android:text="성별" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true"  android:layout_height="40dp" android:layout_width="50dp"/>
+
+                    <TextView
+                        android:id="@+id/tvGender"
+                        android:layout_width="272dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/text_primary_light"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="8dp">
-                    <TextView android:text="나이" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" />
-                    <TextView android:id="@+id/tvAge" android:text="-" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
+                    <TextView android:text="나이" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" android:layout_height="40dp" android:layout_width="50dp"/>
+                    <TextView android:id="@+id/tvAge" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
                 </RelativeLayout>
 
                 <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="8dp">
-                    <TextView android:text="키" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" />
-                    <TextView android:id="@+id/tvHeight" android:text="-" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
+                    <TextView android:text="키" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" android:layout_height="40dp" android:layout_width="50dp"/>
+                    <TextView android:id="@+id/tvHeight" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
                 </RelativeLayout>
 
                 <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="8dp">
-                    <TextView android:text="현재 체중" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" />
-                    <TextView android:id="@+id/tvWeight" android:text="-" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
+                    <TextView android:text="현재 체중" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" android:layout_height="40dp" android:layout_width="60dp"/>
+                    <TextView android:id="@+id/tvWeight" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
                 </RelativeLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -77,13 +85,13 @@
                     android:layout_marginBottom="12dp" />
 
                 <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="8dp">
-                    <TextView android:text="기초대사량(BMR)" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" />
-                    <TextView android:id="@+id/tvBmr" android:text="-" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
+                    <TextView android:text="기초대사량(BMR)" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" android:layout_height="40dp" android:layout_width="110dp"/>
+                    <TextView android:id="@+id/tvBmr" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
                 </RelativeLayout>
 
                 <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="8dp">
-                    <TextView android:text="일일 목표 섭취량" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" />
-                    <TextView android:id="@+id/tvDailyGoal" android:text="-" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
+                    <TextView android:text="일일 목표 섭취량" android:textColor="@color/text_sub_light" android:layout_alignParentStart="true" android:layout_height="40dp" android:layout_width="110dp"/>
+                    <TextView android:id="@+id/tvDailyGoal" android:textStyle="bold" android:textColor="@color/text_primary_light" android:layout_alignParentEnd="true" />
                 </RelativeLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -12,21 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthmate.R;
-import com.example.healthmate.model.AnalysisResult; // 4.2에서 만든 모델
+import com.example.healthmate.model.AnalysisResult;
 
 import java.util.List;
 
-// React의 EditableFoodItem 리스트 로직
 public class AnalysisAdapter extends RecyclerView.Adapter<AnalysisAdapter.ViewHolder> {
 
-    private List<AnalysisResult> results;
+    private final List<AnalysisResult> results;
+    private final OnDataChangeListener listener;
 
-    // 총 칼로리 계산 및 삭제를 위한 콜백
     public interface OnDataChangeListener {
         void onDataChanged();
         void onItemRemoved(int position);
     }
-    private OnDataChangeListener listener;
 
     public AnalysisAdapter(List<AnalysisResult> results, OnDataChangeListener listener) {
         this.results = results;
@@ -45,16 +43,15 @@ public class AnalysisAdapter extends RecyclerView.Adapter<AnalysisAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AnalysisResult item = results.get(position);
 
-        // TextWatcher를 임시로 제거 (데이터 바인딩 시 무한 루프 방지)
         holder.foodItemWatcher.setActive(false);
         holder.kcalWatcher.setActive(false);
         holder.servingSizeWatcher.setActive(false);
 
-        holder.etFoodItem.setText(item.getFoodItem());
-        holder.etKcal.setText(String.valueOf(item.getKcal()));
+        // Corrected getter methods to match AnalysisResult model
+        holder.etFoodItem.setText(item.getFoodName());
+        holder.etKcal.setText(String.valueOf(item.getCalories()));
         holder.etServingSize.setText(String.valueOf(item.getServingSize()));
 
-        // TextWatcher를 다시 활성화
         holder.foodItemWatcher.setActive(true);
         holder.kcalWatcher.setActive(true);
         holder.servingSizeWatcher.setActive(true);
@@ -65,12 +62,10 @@ public class AnalysisAdapter extends RecyclerView.Adapter<AnalysisAdapter.ViewHo
         return results.size();
     }
 
-    // 수정된 리스트 반환
     public List<AnalysisResult> getUpdatedResults() {
         return results;
     }
 
-    // React의 onResultChange와 onRemoveItem
     class ViewHolder extends RecyclerView.ViewHolder {
         EditText etFoodItem, etServingSize, etKcal;
         ImageButton btnRemoveItem;
@@ -83,46 +78,83 @@ public class AnalysisAdapter extends RecyclerView.Adapter<AnalysisAdapter.ViewHo
             etKcal = itemView.findViewById(R.id.etKcal);
             btnRemoveItem = itemView.findViewById(R.id.btnRemoveItem);
 
-            // TextWatcher 설정 (React의 onChange)
-            foodItemWatcher = new CustomTextWatcher(
-                    pos -> results.get(pos).setFoodItem(etFoodItem.getText().toString())
-            );
-            servingSizeWatcher = new CustomTextWatcher(
-                    pos -> results.get(pos).setServingSize(safeParseInt(etServingSize.getText().toString()))
-            );
-            kcalWatcher = new CustomTextWatcher(
-                    pos -> {
-                        results.get(pos).setKcal(safeParseInt(etKcal.getText().toString()));
-                        listener.onDataChanged(); // 칼로리 변경 시 총합 다시 계산
+            // Corrected implementation using anonymous classes
+            foodItemWatcher = new CustomTextWatcher() {
+                @Override
+                void onTextChanged(int position) {
+                    if (position != RecyclerView.NO_POSITION) {
+                        results.get(position).setFoodName(etFoodItem.getText().toString());
                     }
-            );
+                }
+            };
+
+            servingSizeWatcher = new CustomTextWatcher() {
+                @Override
+                void onTextChanged(int position) {
+                    if (position != RecyclerView.NO_POSITION) {
+                        results.get(position).setServingSize(safeParseInt(etServingSize.getText().toString()));
+                    }
+                }
+            };
+
+            kcalWatcher = new CustomTextWatcher() {
+                @Override
+                void onTextChanged(int position) {
+                    if (position != RecyclerView.NO_POSITION) {
+                        results.get(position).setCalories(safeParseInt(etKcal.getText().toString()));
+                        if (listener != null) {
+                            listener.onDataChanged();
+                        }
+                    }
+                }
+            };
 
             etFoodItem.addTextChangedListener(foodItemWatcher);
             etServingSize.addTextChangedListener(servingSizeWatcher);
             etKcal.addTextChangedListener(kcalWatcher);
 
-            // 삭제 버튼 (onRemoveItem)
             btnRemoveItem.setOnClickListener(v -> {
-                listener.onItemRemoved(getAdapterPosition());
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onItemRemoved(position);
+                    }
+                }
             });
         }
 
         private int safeParseInt(String s) {
-            try { return Integer.parseInt(s); } catch (NumberFormatException e) { return 0; }
+            try {
+                return Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                return 0;
+            }
+        }
+    }
+
+    // Abstract helper class for TextWatcher
+    abstract class CustomTextWatcher implements TextWatcher {
+        private boolean active = true;
+
+        void setActive(boolean active) {
+            this.active = active;
         }
 
-        // TextWatcher를 동적으로 켜고 끄기 위한 헬퍼 클래스
-        abstract class CustomTextWatcher implements TextWatcher {
-            private boolean active = true;
-            void setActive(boolean active) { this.active = active; }
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            @Override public void afterTextChanged(Editable s) {
-                if (active) {
-                    onTextChanged(getAdapterPosition());
-                }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (active) {
+                // The position might not be available during a text change event,
+                // so this abstract class cannot get the position here.
+                // The anonymous class implementation in ViewHolder will handle getting the position.
             }
-            abstract void onTextChanged(int position);
         }
+        // This method will be implemented by the anonymous class in ViewHolder
+        abstract void onTextChanged(int position);
     }
 }

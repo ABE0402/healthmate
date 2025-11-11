@@ -67,6 +67,7 @@ public class ProfileViewModel extends ViewModel {
     private void loadProfileData() {
         // --- Mock 데이터 (React App.tsx) ---
         UserProfile profile = new UserProfile(
+                "mock_user_id", "김헬스", "health@mate.com", // id, name, email 추가
                 UserProfile.Gender.MALE, 30, 178, 75,
                 UserProfile.ActivityLevel.MODERATE, new ArrayList<>()
         );

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class CalculationUtils {
 
-    // React의 ACTIVITY_LEVELS
+    // React's ACTIVITY_LEVELS
     private static final Map<UserProfile.ActivityLevel, Double> ACTIVITY_MULTIPLIERS = new HashMap<>();
     static {
         ACTIVITY_MULTIPLIERS.put(UserProfile.ActivityLevel.SEDENTARY, 1.2);
@@ -17,7 +17,7 @@ public class CalculationUtils {
     }
 
     /**
-     * React의 bmr useMemo
+     * React's bmr useMemo
      */
     public static int calculateBMR(UserProfile profile) {
         if (profile == null) return 0;
@@ -33,12 +33,20 @@ public class CalculationUtils {
     }
 
     /**
-     * React의 dailyGoal
+     * React's dailyGoal
+     * Calculates the Total Daily Energy Expenditure (TDEE).
      */
-    public static int calculateDailyGoal(UserProfile profile) {
+    public static int calculateTDEE(UserProfile profile) {
         if (profile == null) return 0;
         int bmr = calculateBMR(profile);
         double multiplier = ACTIVITY_MULTIPLIERS.getOrDefault(profile.getActivityLevel(), 1.55);
         return (int) Math.round(bmr * multiplier);
+    }
+
+    /**
+     * Calculates the daily calorie goal, which is an alias for TDEE.
+     */
+    public static int calculateDailyGoal(UserProfile profile) {
+        return calculateTDEE(profile);
     }
 }

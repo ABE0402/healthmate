@@ -66,6 +66,6 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_trash"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="@color/text_sub_light" />
+            android:layout_marginEnd="8dp" />
     </LinearLayout>
 </RelativeLayout>

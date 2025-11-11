@@ -11,7 +11,8 @@ import com.example.healthmate.model.MealPlan;
 import com.example.healthmate.model.Recipe;
 import com.example.healthmate.model.UserProfile;
 import com.example.healthmate.service.ChallengeService;
-import com.example.healthmate.service.GeminiService; // 4단계에서 만든 서비스
+import com.example.healthmate.service.GeminiService;
+import com.example.healthmate.utils.CalculationUtils; // CalculationUtils import 추가
 
 import java.util.List;
 
@@ -40,14 +41,7 @@ public class AnalysisViewModel extends ViewModel {
     private final MutableLiveData<MealPlan> _mealPlan = new MutableLiveData<>();
     public LiveData<MealPlan> getMealPlan() { return _mealPlan; }
 
-    // React의 aiChallenge, isFetchingAiChallenge
-    // ... (AIChallenge LiveData) ...
-
-    // React의 CalorieTrendChart 데이터
-    // ... (Chart Data LiveData) ...
-
-    // AIInsightCard, AIPatternAnalysisCard 데이터
-    // ... (AI Feedback LiveData) ...
+    // ... (기타 LiveData) ...
 
     // --- 14단계: 챌린지 LiveData ---
     private final MutableLiveData<Boolean> _isFetchingAiChallenge = new MutableLiveData<>(false);
@@ -61,8 +55,8 @@ public class AnalysisViewModel extends ViewModel {
 
 
     public AnalysisViewModel() {
-        // ViewModel 생성 시 모든 데이터를 로드
-        loadAllAnalysisData(); // 챌린지 데이터 로드
+        // ViewModel 생성 시 챌린지 데이터를 로드
+        loadChallengeData();
     }
 
     private void loadAllAnalysisData() {
@@ -71,12 +65,9 @@ public class AnalysisViewModel extends ViewModel {
         // 데이터 로드 후 AI 함수들 호출
         fetchAIWorkoutPlan();
         fetchAIRecipe();
-        // ...
     }
 
-    // React의 fetchWorkoutPlan
     public void fetchAIWorkoutPlan() {
-        // (getAIWorkoutPlan은 4단계 GeminService.java에 추가 구현 필요)
         geminiService.getAIWorkoutPlan(allMeals, userProfile, new GeminiService.TextCallback() {
             @Override
             public void onSuccess(String textResponse) {
@@ -89,7 +80,6 @@ public class AnalysisViewModel extends ViewModel {
         });
     }
 
-    // React의 fetchRecipe
     public void fetchAIRecipe() {
         geminiService.getAIRecipe(allMeals, new GeminiService.RecipeCallback() {
             @Override
@@ -98,16 +88,15 @@ public class AnalysisViewModel extends ViewModel {
             }
             @Override
             public void onError(Exception e) {
-                _recipe.postValue(null); // 실패 시 null
+                _recipe.postValue(null);
             }
         });
     }
 
     public void generateMealPlan(String preferences) {
         _isGeneratingPlan.setValue(true);
-        _mealPlan.setValue(null); // 이전 계획 삭제
+        _mealPlan.setValue(null);
 
-        // (userProfile은 ViewModel 생성 시 로드되었다고 가정)
         geminiService.getAIMealPlan(userProfile, preferences, new GeminiService.MealPlanCallback() {
             @Override
             public void onSuccess(MealPlan mealPlan) {
@@ -123,12 +112,19 @@ public class AnalysisViewModel extends ViewModel {
     }
 
     private void loadChallengeData() {
+        // TODO: Repository를 통해 allMeals와 userProfile을 실제로 로드해야 합니다.
+        // 현재는 null 상태이므로 아래 코드가 실행되지 않거나 오류를 발생시킬 수 있습니다.
+        if (userProfile == null || allMeals == null) {
+            // 적절한 오류 처리 또는 초기화 로직이 필요합니다.
+            return;
+        }
+
         // 1. AI 챌린지 가져오기
         fetchAIChallenge();
 
         // 2. 장기 챌린지 계산
-        // (allMeals와 userProfile은 생성자에서 로드되었다고 가정)
-        int dailyGoal = calculateTDEE(userProfile); // 4단계에서 만든 함수
+        // CalculationUtils의 정적 메서드 호출로 수정
+        int dailyGoal = CalculationUtils.calculateTDEE(userProfile);
         List<ChallengeProgress> challenges = ChallengeService.calculateChallenges(allMeals, dailyGoal);
         _longTermChallenges.postValue(challenges);
     }
@@ -143,7 +139,6 @@ public class AnalysisViewModel extends ViewModel {
             }
             @Override
             public void onError(Exception e) {
-                // (에러 처리)
                 _isFetchingAiChallenge.postValue(false);
             }
         });

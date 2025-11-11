@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.healthmate.R;
 import com.example.healthmate.model.GroupFeedItem;
 
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
 
@@ -57,6 +57,30 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         return feedItems.size();
     }
 
+    private static String formatRelativeTime(Date timestamp) {
+        if (timestamp == null) {
+            return "";
+        }
+        long time = timestamp.getTime();
+        long now = System.currentTimeMillis();
+        long diff = now - time;
+
+        long seconds = diff / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+
+        if (days > 0) {
+            return days + "일 전";
+        } else if (hours > 0) {
+            return hours + "시간 전";
+        } else if (minutes > 0) {
+            return minutes + "분 전";
+        } else {
+            return "방금 전";
+        }
+    }
+
     // 17.1 XML의 뷰들을 보관
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivFeedIcon;
@@ -90,7 +114,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             if (item.isLikedByMe()) {
                 btnLike.setText("응원 취소");
                 btnLike.setTextColor(ContextCompat.getColor(context, R.color.primary_blue));
-                btnLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_thumbs_up_filled, 0, 0, 0); // (채워진 아이콘)
+                btnLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_thumbs_up, 0, 0, 0); // (채워진 아이콘)
             } else {
                 btnLike.setText("응원하기 (" + item.getLikes() + ")");
                 btnLike.setTextColor(ContextCompat.getColor(context, R.color.text_sub_light));

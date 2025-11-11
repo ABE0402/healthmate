@@ -73,9 +73,8 @@ public class MealAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             MealViewHolder mealHolder = (MealViewHolder) holder;
             Meal meal = (Meal) items.get(position);
 
-            mealHolder.tvFoodItem.setText(meal.getFoodItem());
-            mealHolder.tvServingSize.setText(String.format(Locale.getDefault(), "%dg", meal.getServingSize()));
-            mealHolder.tvKcal.setText(String.format(Locale.getDefault(), "%d", meal.getKcal()));
+            mealHolder.tvFoodItem.setText(meal.getFoodName());
+            mealHolder.tvKcal.setText(String.format(Locale.getDefault(), "%d", meal.getCalories()));
 
             // 삭제 버튼 클릭 리스너 연결
             mealHolder.btnDeleteMeal.setOnClickListener(v ->

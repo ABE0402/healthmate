@@ -29,6 +29,7 @@ import com.example.healthmate.model.Meal;
 import com.example.healthmate.viewmodel.HomeViewModel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -163,20 +164,28 @@ public class AnalysisDialogFragment extends DialogFragment {
     private void updateTotalKcal() {
         int total = 0;
         for (AnalysisResult res : adapter.getUpdatedResults()) {
-            total += res.getKcal();
+            total += res.getCalories();
         }
         tvTotalKcal.setText(String.format(Locale.getDefault(), "%,d kcal", total));
     }
 
     private void setupSpinner() {
-        // (6단계와 동일한 스피너 설정)
-        ArrayAdapter<Meal.MealTime> adapter = new ArrayAdapter<>(...);
+        ArrayAdapter<Meal.MealTime> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, Meal.MealTime.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMealTime.setAdapter(adapter);
         spinnerMealTime.setSelection(getDefaultMealTimeIndex());
     }
 
     private int getDefaultMealTimeIndex() {
-        // (6단계와 동일한 시간 계산 로직)
-        return 1; // "점심"
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        if (hour >= 5 && hour < 11) { // 5:00 - 10:59 -> 아침
+            return Meal.MealTime.BREAKFAST.ordinal();
+        } else if (hour >= 11 && hour < 17) { // 11:00 - 16:59 -> 점심
+            return Meal.MealTime.LUNCH.ordinal();
+        } else { // 17:00 - 4:59 -> 저녁
+            return Meal.MealTime.DINNER.ordinal();
+        }
     }
 }

@@ -46,9 +46,10 @@
             android:layout_height="wrap_content"
             android:text="g"
             android:layout_alignBaseline="@id/etServingSize"
-            android:layout_toEndOf="@id/etServingSize" />
+            android_layout_toEndOf="@id/etServingSize" />
 
         <TextView
+            android:id="@+id/kcalUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="kcal"

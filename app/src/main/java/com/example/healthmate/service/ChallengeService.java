@@ -10,9 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-// React의 challengeService.ts 로직
+
 public class ChallengeService {
 
     private static final int DAILY_PROTEIN_GOAL = 50; //
@@ -31,10 +30,10 @@ public class ChallengeService {
         List<ChallengeProgress> challenges = getBaseChallenges();
 
         // --- 1. 단백질 챌린지 (proteinProgress) ---
-        Map<String, Double> dailyProtein = new HashMap<>();
+        Map<String, Integer> dailyProtein = new HashMap<>();
         for (Meal meal : allMeals) {
             String day = getDayString(meal.getDate());
-            dailyProtein.put(day, dailyProtein.getOrDefault(day, 0.0) + meal.getMacro().getProtein());
+            dailyProtein.put(day, dailyProtein.getOrDefault(day, 0) + meal.getProtein());
         }
         int proteinSuccessDays = (int) dailyProtein.values().stream()
                 .filter(protein -> protein >= DAILY_PROTEIN_GOAL)
@@ -47,18 +46,18 @@ public class ChallengeService {
         cal7DaysAgo.add(Calendar.DATE, -6);
 
         for (Meal meal : allMeals) {
-            if (meal.getTime() == Meal.MealTime.BREAKFAST && meal.getDate().after(cal7DaysAgo.getTime())) {
+            if (Meal.MealTime.BREAKFAST.getDisplayName().equals(meal.getMealType()) && meal.getDate().after(cal7DaysAgo.getTime())) {
                 breakfastDays.add(getDayString(meal.getDate()));
             }
         }
         challenges.get(1).updateProgress(breakfastDays.size());
 
         // --- 3. 칼로리 챌린지 (calorieProgress) ---
-        Map<String, Double> dailyKcal = new HashMap<>();
+        Map<String, Integer> dailyKcal = new HashMap<>();
         for (Meal meal : allMeals) {
             if (meal.getDate().after(cal7DaysAgo.getTime())) {
                 String day = getDayString(meal.getDate());
-                dailyKcal.put(day, dailyKcal.getOrDefault(day, 0.0) + meal.getKcal());
+                dailyKcal.put(day, dailyKcal.getOrDefault(day, 0) + meal.getCalories());
             }
         }
         int calorieSuccessDays = (int) dailyKcal.values().stream()

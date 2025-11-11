@@ -90,7 +90,7 @@ public class PlannerTabFragment extends Fragment
     public void onLogMealClick(String foodItem) {
         // 6단계에서 만든 HomeFragment의 onMealAdd와 동일한 로직 호출
         // (단, 여기서는 기본 '점심'으로 설정하거나, 시간 선택 다이얼로그를 띄워야 함)
-        homeViewModel.addManualMeal(foodItem, com.healthmate.model.Meal.MealTime.LUNCH);
+        homeViewModel.addManualMeal(foodItem, com.example.healthmate.model.Meal.MealTime.LUNCH);
 
         Toast.makeText(getContext(), foodItem + "을(를) 기록했습니다.", Toast.LENGTH_SHORT).show();
     }

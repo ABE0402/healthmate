@@ -25,7 +25,6 @@ public class AnalysisTabFragment extends Fragment {
     private TextView tvExerciseContent;
     private ProgressBar progressExercise;
 
-    // (cardAiRecipe, chartCalorieTrend 등의 뷰 변수들...)
 
     @Nullable
     @Override

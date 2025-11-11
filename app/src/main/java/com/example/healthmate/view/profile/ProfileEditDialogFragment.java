@@ -103,6 +103,9 @@ public class ProfileEditDialogFragment extends DialogFragment {
 
             // (간단한 구현, 실제로는 new UserProfile(...) 사용)
             UserProfile updatedProfile = new UserProfile(
+                    currentProfile.getId(),
+                    currentProfile.getName(),
+                    currentProfile.getEmail(),
                     (UserProfile.Gender) spinnerGender.getSelectedItem(),
                     Integer.parseInt(etAge.getText().toString()),
                     (int) Double.parseDouble(etHeight.getText().toString()),

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -28,11 +28,26 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="24dp">
 
-            <ImageView
-                android:id="@+id/ivProfileImage"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:src="@drawable/ic_profile_placeholder" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivProfileImage"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/ic_profile_placeholder" />
+
+                <ImageButton
+                    android:id="@+id/btnEditProfile"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_edit"
+                    android:background="@drawable/bg_primary_blue_rounded"
+                    app:tint="@android:color/white"
+                    android:layout_gravity="bottom|end" />
+            </FrameLayout>
+
             <TextView
                 android:id="@+id/tvProfileName"
                 android:layout_width="wrap_content"
@@ -50,15 +65,6 @@
                 android:textColor="@color/text_sub_light" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnEditProfile"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_edit"
-            android:background="@drawable/bg_primary_blue_rounded"
-            android:tint="@android:color/white"
-            android:layout_alignBottom="@id/profileCenterLayout/ivProfileImage"
-            android:layout_alignEnd="@id/profileCenterLayout/ivProfileImage" />
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout

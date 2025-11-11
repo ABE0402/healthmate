@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bumptech.glide.Glide; // Glide (이미지 로더 라이브러리)
+import com.bumptech.glide.Glide;
 import com.example.healthmate.R;
 import com.example.healthmate.model.Friend;
 
@@ -60,8 +60,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
         void bind(Friend friend) {
             tvName.setText(friend.getName());
 
-            // Glide 라이브러리를 사용해 URL의 이미지를 로드
-            // React의 <img src={friend.avatar} ... />
+
             Glide.with(itemView.getContext())
                     .load(friend.getAvatarUrl())
                     .placeholder(R.drawable.ic_profile_placeholder)
